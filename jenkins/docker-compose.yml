@@ -1,0 +1,18 @@
+# Runs a local Jenkins controller at http://localhost:8080.
+# The host Docker socket is mounted so pipeline stages can build images.
+services:
+  jenkins:
+    build: .
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    group_add:
+      - "${DOCKER_GID:-999}"
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:

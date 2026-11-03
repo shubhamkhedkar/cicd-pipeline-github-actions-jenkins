@@ -1,0 +1,12 @@
+node_modules
+coverage
+.git
+.github
+tests
+deploy
+docs
+jenkins
+scripts
+*.md
+Jenkinsfile
+.env*
